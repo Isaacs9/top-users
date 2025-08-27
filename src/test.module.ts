@@ -12,7 +12,7 @@ export class TestAppModule {
             module: TestAppModule,
             imports: [
                 KnexModule.forRoot({
-                    config: testDb.client.config, // usa a conexão do Testcontainers
+                    config: testDb.client.config,
                 }),
                 AutomapperModule.forRoot({ strategyInitializer: classes() }),
                 UsersModule,

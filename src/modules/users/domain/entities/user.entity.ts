@@ -34,7 +34,7 @@ export class User {
   @AutoMap()
   public cep: string;
 
-  @AutoMap(() => String) // enums geralmente mapeados como string
+  @AutoMap(() => String)
   public status: UserStatusEnum;
 
   @AutoMap()

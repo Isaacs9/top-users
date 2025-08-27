@@ -146,3 +146,13 @@ docs/
 * O microserviço utiliza **NestJS**, **Knex** e **PostgreSQL**.
 * Para testes e2e, o banco de testes é criado automaticamente em container via **Testcontainers**, garantindo isolamento do banco de produção.
 * O schema padrão é `users`, configurável via variável `DB_SCHEMA`.
+
+## 👨‍💻 Autores
+
+- **Isaac Pereira** – arquitetura e desenvolvimento
+
+---
+
+## 📜 Licença
+
+Este projeto está licenciado sob os termos da licença MIT.
