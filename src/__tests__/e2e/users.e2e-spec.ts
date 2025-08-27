@@ -3,9 +3,7 @@ import { INestMicroservice } from '@nestjs/common';
 import { Transport, ClientProxyFactory, ClientProxy } from '@nestjs/microservices';
 import { GenericContainer } from 'testcontainers';
 import {knex, Knex} from 'knex';
-import { AppModule } from '../../app.module';
 import {firstValueFrom, lastValueFrom} from "rxjs";
-import {KnexModule} from "nestjs-knex";
 import {TestAppModule} from "../../test.module";
 
 describe('Users Microservice (e2e) - Knex + Testcontainers', () => {

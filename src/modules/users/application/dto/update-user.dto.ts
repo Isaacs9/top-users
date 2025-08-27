@@ -1,4 +1,4 @@
-import {IsEmail, IsNotEmpty, MinLength} from "class-validator";
+import {IsEmail, IsNotEmpty} from "class-validator";
 import {AutoMap} from "@automapper/classes";
 
 export class UpdateUserDto {

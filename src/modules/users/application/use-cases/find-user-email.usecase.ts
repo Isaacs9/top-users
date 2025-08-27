@@ -3,9 +3,7 @@ import { User } from '../../domain/entities/user.entity';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
 import {IUserRepository} from "../../domain/user.repository";
-import {CreateUserDto} from "../dto/create-user.dto";
 import {UserListDto} from "../dto/user-list.dto";
-import {UserProfile} from "../../infra/mappers/user.profile";
 
 @Injectable()
 export class FindUserEmailUseCase {

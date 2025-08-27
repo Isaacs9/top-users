@@ -12,7 +12,6 @@ describe('CreateUserUseCase', () => {
   let mapper: jest.Mocked<Mapper>;
 
   beforeEach(async () => {
-    // Create mocks
     userRepository = {
       create: jest.fn(),
       findById: jest.fn(),
@@ -49,7 +48,6 @@ describe('CreateUserUseCase', () => {
 
   describe('execute', () => {
     it('deve criar um usuário e retornar o id', async () => {
-      // Arrange
       const createUserDto: CreateUserDto = {
         nome: 'Test User',
         email: 'test@example.com',
@@ -66,7 +64,6 @@ describe('CreateUserUseCase', () => {
       const user = new User({
         nome: createUserDto.nome,
         email: createUserDto.email,
-        // Password will be set explicitly
         rua: createUserDto.rua,
         numero: createUserDto.numero,
         bairro: createUserDto.bairro,
@@ -78,16 +75,12 @@ describe('CreateUserUseCase', () => {
 
       const userId = 1;
 
-      // Mock the mapper to return the user
       mapper.map.mockReturnValue(user);
 
-      // Mock the repository to return the user id
       userRepository.create.mockResolvedValue(userId);
 
-      // Act
       const result = await useCase.execute(createUserDto);
 
-      // Assert
       expect(mapper.map).toHaveBeenCalledWith(createUserDto, CreateUserDto, User);
       expect(user.password).toBe(createUserDto.password);
       expect(userRepository.create).toHaveBeenCalledWith(user);
@@ -95,7 +88,6 @@ describe('CreateUserUseCase', () => {
     });
 
     it('deve lançar um erro se a criação do repositório falhar', async () => {
-      // Arrange
       const createUserDto: CreateUserDto = {
         nome: 'Test User',
         email: 'test@example.com',
@@ -112,7 +104,6 @@ describe('CreateUserUseCase', () => {
       const user = new User({
         nome: createUserDto.nome,
         email: createUserDto.email,
-        // Password will be set explicitly
         rua: createUserDto.rua,
         numero: createUserDto.numero,
         bairro: createUserDto.bairro,
@@ -124,13 +115,10 @@ describe('CreateUserUseCase', () => {
 
       const error = new Error('Database error');
 
-      // Mock the mapper to return the user
       mapper.map.mockReturnValue(user);
 
-      // Mock the repository to throw an error
       userRepository.create.mockRejectedValue(error);
 
-      // Act & Assert
       await expect(useCase.execute(createUserDto)).rejects.toThrow(error);
       expect(mapper.map).toHaveBeenCalledWith(createUserDto, CreateUserDto, User);
       expect(userRepository.create).toHaveBeenCalledWith(user);

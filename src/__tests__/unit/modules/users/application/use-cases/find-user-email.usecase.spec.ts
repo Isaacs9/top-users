@@ -13,7 +13,6 @@ describe('FindUserEmailUseCase', () => {
   let mapper: jest.Mocked<Mapper>;
 
   beforeEach(async () => {
-    // Create mocks
     userRepository = {
       create: jest.fn(),
       findById: jest.fn(),
@@ -50,7 +49,6 @@ describe('FindUserEmailUseCase', () => {
 
   describe('execute', () => {
     it('should find a user by email and return UserListDto', async () => {
-      // Arrange
       const email = 'test@example.com';
       const user = new User({
         id: 1,
@@ -75,7 +73,6 @@ describe('FindUserEmailUseCase', () => {
         id: user.id,
         nome: user.nome,
         email: user.email,
-        // Password will be set explicitly
         rua: user.rua,
         numero: user.numero,
         bairro: user.bairro,
@@ -85,16 +82,12 @@ describe('FindUserEmailUseCase', () => {
         cep: user.cep,
       });
 
-      // Mock the repository to return the user
       userRepository.findByEmail.mockResolvedValue(user);
 
-      // Mock the mapper to return the userListDto
       mapper.map.mockReturnValue(userListDto);
 
-      // Act
       const result = await useCase.execute(email);
 
-      // Assert
       expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
       expect(mapper.map).toHaveBeenCalledWith(user, User, UserListDto);
       expect(result).toBeDefined();
@@ -105,30 +98,23 @@ describe('FindUserEmailUseCase', () => {
     });
 
     it('should return null if user is not found', async () => {
-      // Arrange
       const email = 'nonexistent@example.com';
 
-      // Mock the repository to return null
       userRepository.findByEmail.mockResolvedValue(null);
 
-      // Act
       const result = await useCase.execute(email);
 
-      // Assert
       expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
       expect(mapper.map).not.toHaveBeenCalled();
       expect(result).toBeNull();
     });
 
     it('should throw an error if repository findByEmail fails', async () => {
-      // Arrange
       const email = 'test@example.com';
       const error = new Error('Database error');
 
-      // Mock the repository to throw an error
       userRepository.findByEmail.mockRejectedValue(error);
 
-      // Act & Assert
       await expect(useCase.execute(email)).rejects.toThrow(error);
       expect(userRepository.findByEmail).toHaveBeenCalledWith(email);
       expect(mapper.map).not.toHaveBeenCalled();

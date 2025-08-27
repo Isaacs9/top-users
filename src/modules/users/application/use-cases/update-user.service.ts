@@ -3,7 +3,6 @@ import { User } from '../../domain/entities/user.entity';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
 import {IUserRepository} from "../../domain/user.repository";
-import {CreateUserDto} from "../dto/create-user.dto";
 import {UpdateUserDto} from "../dto/update-user.dto";
 
 @Injectable()
