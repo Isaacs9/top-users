@@ -5,6 +5,8 @@ Microserviço **Top Users** responsável pelo gerenciamento de usuários da plat
 ## Pré-requisitos
 
 * Node.js >= 20
+* NestJS
+* Comunicação TCP (Dependente do Api Gateway https://github.com/Isaacs9/top-api-gateway)
 * npm ou yarn
 * Docker (para rodar banco PostgreSQL local ou via Testcontainers)
 
@@ -86,7 +88,7 @@ yarn test:cov
 
 O relatório será gerado em `coverage/`.
 
-Você pode adicionar um **print da cobertura** abaixo:
+Você pode ver o **print da cobertura** atual do projeto abaixo:
 
 ![Print da cobertura](coverage.png)
 
@@ -95,17 +97,19 @@ Você pode adicionar um **print da cobertura** abaixo:
 Para rodar migrations manualmente:
 
 ```bash
-npm run knex:migrate:latest
-# ou
-yarn knex:migrate:latest
+npm run migrate:run
+```
+
+Para rodar seeds manualmente:
+
+```bash
+npm run seed:run
 ```
 
 Para reverter migrations:
 
 ```bash
-npm run knex:migrate:rollback
-# ou
-yarn knex:migrate:rollback
+npm run migrate:rollback
 ```
 
 > Certifique-se de que o banco configurado no `.env` esteja disponível.
@@ -116,10 +120,10 @@ yarn knex:migrate:rollback
 src/
  ├─ modules/
  │   └─ users/
- │       ├─ controllers/
- │       ├─ services/
- │       ├─ repositories/
- │       └─ dtos/
+ │       ├─ presentation/
+ │       ├─ application/
+ │       ├─ domain/
+ │       └─ infra/
  ├─ infra/
  │   ├─ database/
  │   │   ├─ migrations/

@@ -13,11 +13,11 @@ const config: { [key: string]: Knex.Config } = {
         },
         searchPath: ['users'],
         migrations: {
-            directory: './src/infra/database/migrations',
+            directory: './database/migrations',
             extension: 'ts',
         },
         seeds: {
-            directory: './src/infra/database/seeds',
+            directory: './database/seeds',
             extension: 'ts',
         }
     }

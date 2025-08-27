@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const testing_1 = require("@nestjs/testing");
 const microservices_1 = require("@nestjs/microservices");
-const app_module_1 = require("../app.module");
+const app_module_1 = require("../../app.module");
 const knexfile_test_1 = require("../../knexfile.test");
 const knex_1 = require("knex");
 describe('Users microservice (e2e)', () => {
